@@ -13,7 +13,7 @@ The Connecticut Digital Archive, CTDA, is a multisite Islandora installation. Th
 This is both a production presentation and management site.
 * [Connecticut State Library Stage or Sandbox](http://csl-stage.lib.uconn.edu)
 
-* [Trinity College Library](http://ctcollections.trincoll.edu]
+* [Trinity College Library](http://ctcollections.trincoll.edu)
 This is both a production presentation and management site.
 * [Trinity College Library Stage or Sandbox](http://trincoll-stage.lib.uconn.edu)
 

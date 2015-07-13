@@ -121,7 +121,10 @@
               <path>mods:titleInfo</path>
               <context>parent</context>
             </read>
-            <update>NULL</update>
+            <update>
+              <path>self::node()</path>
+              <context>self</context>
+            </update>
             <delete>NULL</delete>
           </actions>
         </properties>
@@ -170,12 +173,13 @@
           <type>tabs</type>
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
-          <collapsible>TRUE</collapsible>
+          <collapsible>FALSE</collapsible>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
+          <title>Author(s) and/or Contributor(s)</title>
           <tree>TRUE</tree>
           <actions>
             <create>NULL</create>
@@ -199,7 +203,6 @@
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Author, Contributor, Primary Contact</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -214,7 +217,10 @@
                   <path>mods:name</path>
                   <context>parent</context>
                 </read>
-                <update>NULL</update>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
                 <delete>
                   <path>self::node()</path>
                   <context>self</context>
@@ -224,21 +230,21 @@
             <children>
               <element name="type">
                 <properties>
-                  <type>hidden</type>
+                  <type>select</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <default_value>personal</default_value>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <options>
+                    <index key="">Select</index>
                     <personal>Person</personal>
-                    <corporate>Corporation</corporate>
+                    <corporate>Organization or Corporate Entity</corporate>
                   </options>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Person or Corporate Author?</title>
+                  <title>Person or Organization</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -268,13 +274,13 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Enter Last name, First name Middle Initial</description>
+                  <description>Last name, first name</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
-                  <required>TRUE</required>
+                  <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Name (Required)</title>
+                  <title>Name</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -304,11 +310,10 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Used to Distinguish Creator from Contributor</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
-                  <required>TRUE</required>
+                  <required>FALSE</required>
                   <resizable>FALSE</resizable>
                   <title>Author or Contributor?</title>
                   <tree>TRUE</tree>
@@ -327,7 +332,6 @@
                       <multiple>FALSE</multiple>
                       <required>FALSE</required>
                       <resizable>FALSE</resizable>
-                      <title>Designation</title>
                       <tree>TRUE</tree>
                       <actions>
                         <create>
@@ -339,7 +343,7 @@
                           <value>&lt;role&gt;&lt;roleTerm type="text" authority="marcrelator"&gt;%value%&lt;/roleTerm&gt;&lt;/role&gt;</value>
                         </create>
                         <read>
-                          <path>mods:role/mods:roleTerm[@type="text"]</path>
+                          <path>mods:role/mods:roleTerm[@type='text' and @authority='marcrelator']</path>
                           <context>parent</context>
                         </read>
                         <update>
@@ -355,7 +359,7 @@
               </element>
               <element name="affiliation">
                 <properties>
-                  <type>textfield</type>
+                  <type>textarea</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
@@ -364,7 +368,8 @@
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Contact Email &amp; affiliation</title>
+                  <rows>1</rows>
+                  <title>Affiliation</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -377,6 +382,41 @@
                     </create>
                     <read>
                       <path>mods:affiliation</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="email">
+                <properties>
+                  <type>textfield</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Email</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>description</value>
+                    </create>
+                    <read>
+                      <path>mods:description</path>
                       <context>parent</context>
                     </read>
                     <update>
@@ -402,12 +442,12 @@
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <options>
-            <index key="still image">still image</index>
             <text>text</text>
+            <index key="still image">still image</index>
             <index key="sound recording">sound recording</index>
             <index key="moving image">moving image</index>
-            <index key="mixed material">mixed material</index>
             <cartographic>cartographic</cartographic>
+            <index key="mixed material">mixed material</index>
             <index key="notated music">notated music</index>
             <index key="sound recording-musical">sound recording-musical</index>
             <index key="sound recording-nonmusical">sound recording-nonmusical</index>
@@ -479,7 +519,7 @@
           <type>markup</type>
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
-          <collapsible>TRUE</collapsible>
+          <collapsible>FALSE</collapsible>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
@@ -503,11 +543,14 @@
               <path>self::node()</path>
               <context>self</context>
             </update>
-            <delete>NULL</delete>
+            <delete>
+              <path>self::node()</path>
+              <context>self</context>
+            </delete>
           </actions>
         </properties>
         <children>
-          <element name="dateIssued">
+          <element name="dateOther">
             <properties>
               <type>datepicker</type>
               <access>TRUE</access>
@@ -516,9 +559,9 @@
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
-              <required>TRUE</required>
+              <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Submission Date</title>
+              <title>Date Submitted</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -527,17 +570,20 @@
                   <schema/>
                   <type>xml</type>
                   <prefix>NULL</prefix>
-                  <value>&lt;dateIssued encoding="w3cdtf" keyDate="yes"&gt;%value%&lt;/dateIssued&gt;</value>
+                  <value>&lt;dateOther type="upload" encoding="w3cdtf" keyDate="yes"&gt;%value%&lt;/dateOther&gt;</value>
                 </create>
                 <read>
-                  <path>mods:dateIssued[@encoding='w3cdtf' and @keyDate='yes']</path>
+                  <path>mods:dateOther[@type='upload' and @encoding='w3cdtf' and @keyDate='yes']</path>
                   <context>parent</context>
                 </read>
                 <update>
                   <path>self::node()</path>
                   <context>self</context>
                 </update>
-                <delete>NULL</delete>
+                <delete>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </delete>
               </actions>
             </properties>
             <children/>
@@ -549,7 +595,7 @@
           <type>markup</type>
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
-          <collapsible>TRUE</collapsible>
+          <collapsible>FALSE</collapsible>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
@@ -573,7 +619,10 @@
               <path>self::node()</path>
               <context>self</context>
             </update>
-            <delete>NULL</delete>
+            <delete>
+              <path>self::node()</path>
+              <context>self</context>
+            </delete>
           </actions>
         </properties>
         <children>
@@ -587,9 +636,9 @@
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
-              <required>TRUE</required>
+              <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Work's Format(s)</title>
+              <title>Data Format(s)</title>
               <tree>TRUE</tree>
             </properties>
             <children>
@@ -597,7 +646,6 @@
                 <properties>
                   <type>tag</type>
                   <access>TRUE</access>
-                  <autocomplete_path>taxonomy/autocomplete/field_fileformats</autocomplete_path>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
                   <disabled>FALSE</disabled>
@@ -623,7 +671,10 @@
                       <path>self::node()</path>
                       <context>self</context>
                     </update>
-                    <delete>NULL</delete>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
                   </actions>
                 </properties>
                 <children/>
@@ -675,13 +726,11 @@
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
           <default_value>University of Connecticut Libraries</default_value>
-          <description>This is our mandatory statement.</description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Ownership (Required)</title>
           <tree>TRUE</tree>
           <actions>
             <create>
@@ -694,150 +743,6 @@
             </create>
             <read>
               <path>mods:note[@type="ownership"]</path>
-              <context>parent</context>
-            </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children/>
-      </element>
-      <element name="worksProducts">
-        <properties>
-          <type>textarea</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <rows>1</rows>
-          <title>Work's products</title>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>self::node()</path>
-              <context>parent</context>
-              <schema/>
-              <type>element</type>
-              <prefix>NULL</prefix>
-              <value>note</value>
-            </create>
-            <read>
-              <path>mods:note</path>
-              <context>parent</context>
-            </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children/>
-      </element>
-      <element name="worksSources">
-        <properties>
-          <type>textarea</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <rows>1</rows>
-          <title>Work's source(s)</title>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>self::node()</path>
-              <context>parent</context>
-              <schema/>
-              <type>xml</type>
-              <prefix>NULL</prefix>
-              <value>&lt;note type="biographical/historical"&gt;%value%&lt;/note&gt;</value>
-            </create>
-            <read>
-              <path>mods:note[@type="biological/historical"]</path>
-              <context>parent</context>
-            </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children/>
-      </element>
-      <element name="worksLegal">
-        <properties>
-          <type>textarea</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <rows>1</rows>
-          <title>Work's legal &amp; ethical compliance</title>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>self::node()</path>
-              <context>parent</context>
-              <schema/>
-              <type>element</type>
-              <prefix>NULL</prefix>
-              <value>note</value>
-            </create>
-            <read>
-              <path>mods:note</path>
-              <context>parent</context>
-            </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children/>
-      </element>
-      <element name="worksComments">
-        <properties>
-          <type>textarea</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <rows>1</rows>
-          <title>Additional Comments</title>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>self::node()</path>
-              <context>parent</context>
-              <schema/>
-              <type>element</type>
-              <prefix>NULL</prefix>
-              <value>note</value>
-            </create>
-            <read>
-              <path>mods:note</path>
               <context>parent</context>
             </read>
             <update>
@@ -873,7 +778,45 @@
               <value>&lt;note type="preferred citation"&gt;%value%&lt;/note&gt;</value>
             </create>
             <read>
-              <path>mods:note[@type="preferred citation"]</path>
+              <path>mods:note[@type='preferred citation']</path>
+              <context>parent</context>
+            </read>
+            <update>
+              <path>self::node()</path>
+              <context>self</context>
+            </update>
+            <delete>
+              <path>self::node()</path>
+              <context>self</context>
+            </delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
+      <element name="comments">
+        <properties>
+          <type>textarea</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Additional Comments</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>self::node()</path>
+              <context>parent</context>
+              <schema/>
+              <type>element</type>
+              <prefix>NULL</prefix>
+              <value>note</value>
+            </create>
+            <read>
+              <path>mods:note[not(@type)]</path>
               <context>parent</context>
             </read>
             <update>
@@ -887,15 +830,16 @@
       </element>
       <element name="subjects">
         <properties>
-          <type>fieldset</type>
+          <type>markup</type>
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
+          <collapsible>TRUE</collapsible>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
+          <title>Keywords</title>
           <tree>TRUE</tree>
           <actions>
             <create>
@@ -918,18 +862,18 @@
           </actions>
         </properties>
         <children>
-          <element name="topics">
+          <element name="topic">
             <properties>
               <type>tags</type>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
+              <collapsible>TRUE</collapsible>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Keyword(s)</title>
+              <title>Topics</title>
               <tree>TRUE</tree>
             </properties>
             <children>
@@ -974,13 +918,13 @@
               <type>tags</type>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
+              <collapsible>TRUE</collapsible>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Related Geographic Location</title>
+              <title>Places</title>
               <tree>TRUE</tree>
             </properties>
             <children>
@@ -1020,7 +964,7 @@
               </element>
             </children>
           </element>
-          <element name="nameSubject">
+          <element name="name">
             <properties>
               <type>tabs</type>
               <access>TRUE</access>
@@ -1031,6 +975,7 @@
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
+              <title>Funder(s)</title>
               <tree>TRUE</tree>
             </properties>
             <children>
@@ -1063,7 +1008,10 @@
                       <path>self::node()</path>
                       <context>self</context>
                     </update>
-                    <delete>NULL</delete>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
                   </actions>
                 </properties>
                 <children>
@@ -1073,17 +1021,17 @@
                       <access>TRUE</access>
                       <collapsed>FALSE</collapsed>
                       <collapsible>FALSE</collapsible>
-                      <default_value>Funding Agency</default_value>
                       <disabled>FALSE</disabled>
                       <executes_submit_callback>FALSE</executes_submit_callback>
                       <multiple>FALSE</multiple>
                       <options>
-                        <corporate>Funding Agency</corporate>
-                        <personal>Individual</personal>
+                        <index key="">Select a Funder Type</index>
+                        <personal>Person</personal>
+                        <corporate>Organization or Corporate Entity</corporate>
                       </options>
                       <required>FALSE</required>
                       <resizable>FALSE</resizable>
-                      <title>Funder Type</title>
+                      <title>Person or Organization</title>
                       <tree>TRUE</tree>
                       <actions>
                         <create>
@@ -1113,6 +1061,7 @@
                       <access>TRUE</access>
                       <collapsed>FALSE</collapsed>
                       <collapsible>FALSE</collapsible>
+                      <description>Last name, first name</description>
                       <disabled>FALSE</disabled>
                       <executes_submit_callback>FALSE</executes_submit_callback>
                       <multiple>FALSE</multiple>
@@ -1148,7 +1097,109 @@
           </element>
         </children>
       </element>
-      <element name="identifier">
+      <element name="grantNo">
+        <properties>
+          <type>tags</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Associated Grant Number(s)</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="0">
+            <properties>
+              <type>tag</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>xml</type>
+                  <prefix>NULL</prefix>
+                  <value>&lt;identifier type="local"&gt;%value%&lt;/identifier&gt;</value>
+                </create>
+                <read>
+                  <path>mods:identifier[@type='local']</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+        </children>
+      </element>
+      <element name="links">
+        <properties>
+          <type>tags</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Link(s) to Associated Resources</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="0">
+            <properties>
+              <type>tag</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>xml</type>
+                  <prefix>NULL</prefix>
+                  <value>&lt;identifier type="uri"&gt;%value%&lt;/identifier&gt;</value>
+                </create>
+                <read>
+                  <path>mods:identifier[@type='uri']</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+        </children>
+      </element>
+      <element name="rights">
         <properties>
           <type>markup</type>
           <access>TRUE</access>
@@ -1162,124 +1213,57 @@
           <tree>TRUE</tree>
         </properties>
         <children>
-          <element name="identifierLink">
+          <element name="useReproduction">
             <properties>
-              <type>tags</type>
+              <type>textarea</type>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
+              <description>Example: This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License, CC BY-NC-SA.</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
-              <required>FALSE</required>
+              <required>TRUE</required>
               <resizable>FALSE</resizable>
-              <title>Related URL</title>
+              <rows>1</rows>
+              <title>Data Use Policy</title>
               <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>xml</type>
+                  <prefix>NULL</prefix>
+                  <value>&lt;accessCondition type="use and reproduction"&gt;%value%&lt;/accessCondition&gt;</value>
+                </create>
+                <read>
+                  <path>mods:accessCondition[@type="use and reproduction"]</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>NULL</delete>
+              </actions>
             </properties>
-            <children>
-              <element name="0">
-                <properties>
-                  <type>tag</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>
-                      <path>self::node()</path>
-                      <context>parent</context>
-                      <schema/>
-                      <type>xml</type>
-                      <prefix>NULL</prefix>
-                      <value>&lt;identifier type="uri"&gt;%value%&lt;/identifier&gt;</value>
-                    </create>
-                    <read>
-                      <path>mods:identifier[@type="uri"]</path>
-                      <context>parent</context>
-                    </read>
-                    <update>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </update>
-                    <delete>NULL</delete>
-                  </actions>
-                </properties>
-                <children/>
-              </element>
-            </children>
-          </element>
-          <element name="identifierLocal">
-            <properties>
-              <type>tags</type>
-              <access>TRUE</access>
-              <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
-              <disabled>FALSE</disabled>
-              <executes_submit_callback>FALSE</executes_submit_callback>
-              <multiple>FALSE</multiple>
-              <required>FALSE</required>
-              <resizable>FALSE</resizable>
-              <title>Grant No. or Other Local Identifier</title>
-              <tree>TRUE</tree>
-            </properties>
-            <children>
-              <element name="0">
-                <properties>
-                  <type>tag</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>
-                      <path>self::node()</path>
-                      <context>parent</context>
-                      <schema/>
-                      <type>xml</type>
-                      <prefix>NULL</prefix>
-                      <value>&lt;identifier type="local"&gt;%value%&lt;/identifier&gt;</value>
-                    </create>
-                    <read>
-                      <path>mods:identifier[@type="local"]</path>
-                      <context>parent</context>
-                    </read>
-                    <update>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </update>
-                    <delete>NULL</delete>
-                  </actions>
-                </properties>
-                <children/>
-              </element>
-            </children>
+            <children/>
           </element>
         </children>
       </element>
-      <element name="rightsUse">
+      <element name="handle">
         <properties>
-          <type>textarea</type>
+          <type>textfield</type>
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
-          <description>Example: This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License, CC BY-NC-SA.</description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
-          <required>TRUE</required>
+          <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <rows>1</rows>
-          <title>Data Use Policy</title>
+          <title>Your Citable Link</title>
           <tree>TRUE</tree>
           <actions>
             <create>
@@ -1288,10 +1272,10 @@
               <schema/>
               <type>xml</type>
               <prefix>NULL</prefix>
-              <value>&lt;accessCondition type="use and reproduction"&gt;%value%&lt;/accessCondition&gt;</value>
+              <value>&lt;identifier type="hdl"&gt;%value%&lt;/identifier&gt;</value>
             </create>
             <read>
-              <path>mods:accessCondition[@type="use and reproduction"]</path>
+              <path>mods:identifier[@type='hdl']</path>
               <context>parent</context>
             </read>
             <update>

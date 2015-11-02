@@ -43,7 +43,7 @@
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>General Item Data Entry Form</title>
+          <title>Document Data Entry Form</title>
           <tree>TRUE</tree>
         </properties>
         <children/>
@@ -259,13 +259,12 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>If you include the article in the title field below, the index will index off of the article and not the title.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Initial Article</title>
+                  <title>Initial Article (Optional)</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -301,7 +300,7 @@
                   <multiple>FALSE</multiple>
                   <required>TRUE</required>
                   <resizable>FALSE</resizable>
-                  <title>Title </title>
+                  <title>Title</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -638,26 +637,14 @@
       </element>
       <element name="typeOfResource">
         <properties>
-          <type>select</type>
+          <type>hidden</type>
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
+          <default_value>text</default_value>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
-          <options>
-            <index key="still image">still image</index>
-            <index key="mixed material">mixed material</index>
-            <text>text</text>
-            <index key="sound recording">sound recording</index>
-            <index key="moving image">moving image</index>
-            <cartographic>cartographic</cartographic>
-            <index key="notated music">notated music</index>
-            <index key="sound recording-musical">sound recording-musical</index>
-            <index key="sound recording-nonmusical">sound recording-nonmusical</index>
-            <index key="three dimensional object">three dimensional object</index>
-            <index key="software, multimedia">software, multimedia</index>
-          </options>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
           <title>Resource Type (Required)</title>
@@ -1307,7 +1294,7 @@
           </element>
           <element name="internetMediaType">
             <properties>
-              <type>tags</type>
+              <type>textfield</type>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
@@ -1319,44 +1306,27 @@
               <resizable>FALSE</resizable>
               <title>Format/MIME Type </title>
               <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>internetMediaType</value>
+                </create>
+                <read>
+                  <path>mods:internetMediaType</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>NULL</delete>
+              </actions>
             </properties>
-            <children>
-              <element name="0">
-                <properties>
-                  <type>tag</type>
-                  <access>TRUE</access>
-                  <autocomplete_path>taxonomy/autocomplete/field_media_type</autocomplete_path>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>
-                      <path>self::node()</path>
-                      <context>parent</context>
-                      <schema/>
-                      <type>element</type>
-                      <prefix>NULL</prefix>
-                      <value>internetMediaType</value>
-                    </create>
-                    <read>
-                      <path>mods:internetMediaType</path>
-                      <context>parent</context>
-                    </read>
-                    <update>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </update>
-                    <delete>NULL</delete>
-                  </actions>
-                </properties>
-                <children/>
-              </element>
-            </children>
+            <children/>
           </element>
           <element name="digitalOrigin">
             <properties>

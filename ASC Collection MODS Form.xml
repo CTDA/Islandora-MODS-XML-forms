@@ -39,13 +39,12 @@
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
-          <description>This form is used to enter "metadata" or descriptive information about your Collection. For help on how to enter information, consult the how-to document on the CTDA web site &lt;a href="http://ctdigitalarchive.org/resources-for-participants/" target="_blank"&gt;Resources for Participants&lt;/a&gt;.</description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>ASC Collection MODS Form</title>
+          <title>Describe a Collection</title>
           <tree>TRUE</tree>
         </properties>
         <children/>
@@ -165,7 +164,7 @@
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Title Information (Required)</title>
+          <title>Title</title>
           <tree>TRUE</tree>
           <actions>
             <create>NULL</create>
@@ -266,7 +265,7 @@
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Initial Article (Optional)</title>
+                  <title>Initial Article</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -300,9 +299,9 @@
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <maxlength>300</maxlength>
                   <multiple>FALSE</multiple>
-                  <required>FALSE</required>
+                  <required>TRUE</required>
                   <resizable>FALSE</resizable>
-                  <title>Title (Required)</title>
+                  <title>Title</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -350,46 +349,6 @@
                     </create>
                     <read>
                       <path>mods:subTitle</path>
-                      <context>parent</context>
-                    </read>
-                    <update>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </update>
-                    <delete>NULL</delete>
-                  </actions>
-                </properties>
-                <children/>
-              </element>
-              <element name="supplied">
-                <properties>
-                  <type>select</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <default_value>No</default_value>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <options>
-                    <index key="">No</index>
-                    <yes>Yes</yes>
-                  </options>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <title>Did You Assign This Title?</title>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>
-                      <path>self::node()</path>
-                      <context>parent</context>
-                      <schema/>
-                      <type>attribute</type>
-                      <prefix>NULL</prefix>
-                      <value>supplied</value>
-                    </create>
-                    <read>
-                      <path>@supplied</path>
                       <context>parent</context>
                     </read>
                     <update>
@@ -1470,13 +1429,14 @@
         <properties>
           <type>textarea</type>
           <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
+          <rows>1</rows>
           <title>Scope and Content Note (Description) (Recommended)</title>
           <tree>TRUE</tree>
           <actions>
@@ -1490,6 +1450,43 @@
             </create>
             <read>
               <path>mods:abstract</path>
+              <context>parent</context>
+            </read>
+            <update>
+              <path>self::node()</path>
+              <context>self</context>
+            </update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
+      <element name="shortDescription">
+        <properties>
+          <type>textarea</type>
+          <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <description>Used for display</description>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <rows>1</rows>
+          <title>Short Description</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>self::node()</path>
+              <context>parent</context>
+              <schema/>
+              <type>xml</type>
+              <prefix>NULL</prefix>
+              <value>&lt;note type="shortDescription"&gt;%value%&lt;/note&gt;</value>
+            </create>
+            <read>
+              <path>mods:note[@type='shortDescription']</path>
               <context>parent</context>
             </read>
             <update>
@@ -1542,14 +1539,15 @@
         <properties>
           <type>textarea</type>
           <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
           <description>Enter descriptive details that you feel are outside of the Scope And Content Note</description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
+          <rows>1</rows>
           <title>Biographical and/or Historical Note</title>
           <tree>TRUE</tree>
           <actions>
@@ -1578,13 +1576,14 @@
         <properties>
           <type>textarea</type>
           <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
+          <rows>1</rows>
           <title>Acquisition Information</title>
           <tree>TRUE</tree>
           <actions>
@@ -2412,17 +2411,22 @@
         <children>
           <element name="useReproduction">
             <properties>
-              <type>textarea</type>
+              <type>select</type>
               <access>TRUE</access>
-              <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
-              <description>Suggested value: These Materials are provided for educational and research purposes only. The University of Connecticut Libraries hold the copyright except where noted. Permission must be obtained in writing from the University of Connecticut Libraries and/or the owner(s) of the copyright to publish reproductions or quotations beyond "fair use."</description>
+              <collapsed>TRUE</collapsed>
+              <collapsible>TRUE</collapsible>
+              <default_value>CC BY-NC</default_value>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
-              <required>FALSE</required>
+              <options>
+                <index key="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, CC BY-NC.">CC BY-NC</index>
+                <index key="This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License, CC BY-NC-ND.">CC BY-NC-ND</index>
+              </options>
+              <required>TRUE</required>
               <resizable>FALSE</resizable>
-              <title>Statement on Use and Reproduction</title>
+              <rows>1</rows>
+              <title>Rights</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -2435,42 +2439,6 @@
                 </create>
                 <read>
                   <path>mods:accessCondition[@type="use and reproduction"]</path>
-                  <context>parent</context>
-                </read>
-                <update>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </update>
-                <delete>NULL</delete>
-              </actions>
-            </properties>
-            <children/>
-          </element>
-          <element name="restrictionsAccess">
-            <properties>
-              <type>textarea</type>
-              <access>TRUE</access>
-              <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
-              <description>Suggested value: The collection is open and available for research.</description>
-              <disabled>FALSE</disabled>
-              <executes_submit_callback>FALSE</executes_submit_callback>
-              <multiple>FALSE</multiple>
-              <required>FALSE</required>
-              <resizable>FALSE</resizable>
-              <title>Restrictions on Access Statement</title>
-              <tree>TRUE</tree>
-              <actions>
-                <create>
-                  <path>self::node()</path>
-                  <context>parent</context>
-                  <schema/>
-                  <type>xml</type>
-                  <prefix>NULL</prefix>
-                  <value>&lt;accessCondition type="restrictions on access"&gt;%value%&lt;/accessCondition&gt;</value>
-                </create>
-                <read>
-                  <path>mods:accessCondition[@type="restrictions on access"]</path>
                   <context>parent</context>
                 </read>
                 <update>

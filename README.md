@@ -9,8 +9,8 @@ The Connecticut Digital Archive, CTDA, is a multisite Islandora installation. Th
 * [UConn Archives and Special Collections Presentation](http://archives.lib.uconn.edu)
 * [UConn Archives and Special Collections Management] (http://manage.archives.lib.uconn.edu)
 
-* [Connecticut State Library Digital Collections](http://digitalcollections.ctstatelibrary.org) 
-This is both a production presentation and management site.
+* [Connecticut State Library Digital Collections Presentation](http://digitalcollections.ctstatelibrary.org) 
+* [Connecticut State Library Management] (http://manage.csl.lib.uconn.edu)
 * [Connecticut State Library Stage or Sandbox](http://csl-stage.lib.uconn.edu)
 
 * [Trinity College Library](http://ctcollections.trincoll.edu)
@@ -29,6 +29,8 @@ The name of the site, the name of the XML Form, and the names of the associated 
 * CTDA Collections Management Site
   * CTDA Collection MODS Form: Associated with: CollectionCModel
   * CTDA Item MODS Form: Associated with: sp-audioCModel, sp_basic_image, sp-videoCModel, sp_pdf, compoundCModel, bookCModel, sp_large_image_cmodel, binaryObjectCModel
+  * CTDA Newspaper Issue MODS: Associated with: newspaperIssueCM
+  * CTDA Newspaper MODS: Associated with: newspaperCModel
   
 * UConn Archives and Special Collections Management Site
   * ASC Audio MODS Form: Associated with: sp_audioCModel

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" version="3.5" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-5.xsd">
+    <mods:targetAudience>CHO</mods:targetAudience>
+    <mods:titleInfo>
+        <mods:title>Connecticut Life</mods:title>
+        <mods:subTitle>Cool things to do</mods:subTitle>
+    </mods:titleInfo>
+    <mods:titleInfo type="alternative">
+        <mods:title/>
+    </mods:titleInfo>
+    <mods:name type="personal">
+        <mods:namePart/>
+        <mods:role>
+            <mods:roleTerm authority="marcrelator" type="text"/>
+        </mods:role>
+        <mods:description/>
+    </mods:name>
+    <mods:typeOfResource>text</mods:typeOfResource>
+    <mods:genre authority="marcgt">newspaper</mods:genre>
+    <mods:identifier type="issn"/>
+    <mods:identifier type="hdl"/>
+    <mods:identifier type="lccn"/>
+    <mods:abstract>This weekly magazine has lots of information on what's happening all around Connecticut.</mods:abstract>
+    <mods:note type="prospectus"/>
+    <mods:originInfo>
+        <mods:publisher/>
+        <mods:place>
+            <mods:placeTerm type="text"/>
+        </mods:place>
+        <mods:dateIssued encoding="w3cdtf" keyDate="yes" point="start">1955</mods:dateIssued>
+        <mods:dateIssued encoding="w3cdtf" point="end"/>
+        <mods:issuance>serial</mods:issuance>
+        <mods:frequency authority="marcfrequency">Monthly</mods:frequency>
+    </mods:originInfo>
+    <mods:subject>
+        <mods:topic>Life</mods:topic>
+    </mods:subject>
+    <mods:subject>
+        <mods:geographic>Connecticut</mods:geographic>
+    </mods:subject>
+    <mods:relatedItem type="preceding">
+        <mods:titleInfo>
+            <mods:title>Connecticut monthly</mods:title>
+            <mods:subTitle>Life in Connecticut</mods:subTitle>
+        </mods:titleInfo>
+        <mods:originInfo>
+            <mods:publisher/>
+            <mods:place>
+                <mods:placeTerm type="text"/>
+            </mods:place>
+            <mods:issuance>continuing</mods:issuance>
+            <mods:dateIssued point="start">1933</mods:dateIssued>
+            <mods:dateIssued point="end">1955</mods:dateIssued>
+            <mods:frequency authority="marcfrequency">Monthly</mods:frequency>
+        </mods:originInfo>
+        <mods:identifier type="issn"/>
+    </mods:relatedItem>
+    <mods:extension>
+        <dwr:DarwinRecordSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://rs.tdwg.org/dwc/dwcrecord/  http://rs.tdwg.org/dwc/xsd/tdwg_dwc_classes.xsd"
+            xmlns:dcterms="http://purl.org/dc/terms/"
+            xmlns:dwc="http://rs.tdwg.org/dwc/terms/"
+            xmlns:dwr="http://rs.tdwg.org/dwc/dwcrecord/">
+            
+        </dwr:DarwinRecordSet>
+    </mods:extension>
+    <mods:recordInfo>
+        <mods:recordContentSource>University Of Connecticut Libraries</mods:recordContentSource>
+        <mods:languageOfCataloging>
+            <mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm>
+        </mods:languageOfCataloging>
+    </mods:recordInfo>
+</mods:mods>

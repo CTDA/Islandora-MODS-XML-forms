@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3">
   <properties>
-    <root_name>mods</root_name>
+    <root_name>mods:mods</root_name>
     <schema_uri>http://www.loc.gov/standards/mods/v3/mods-3-5.xsd</schema_uri>
     <namespaces default="http://www.loc.gov/mods/v3">
       <namespace prefix="mods">http://www.loc.gov/mods/v3</namespace>
@@ -32,81 +32,82 @@
       </actions>
     </properties>
     <children>
-      <element name="CHO">
+      <element name="introduction">
         <properties>
-          <type>select</type>
+          <type>fieldset</type>
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
-          <default_value>Yes</default_value>
+          <description>Use this form to describe an issue</description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
-          <options>
-            <CHO>Yes</CHO>
-            <index key="">No</index>
-          </options>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Should this Appear in CHI?</title>
+          <title>Newspaper Issue MODS Form</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children/>
+      </element>
+      <element name="version">
+        <properties>
+          <type>hidden</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <default_value>3.5</default_value>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
           <tree>TRUE</tree>
           <actions>
             <create>
-              <path>self::node()</path>
-              <context>parent</context>
+              <path>/mods:mods</path>
+              <context>document</context>
               <schema/>
-              <type>xml</type>
+              <type>attribute</type>
               <prefix>NULL</prefix>
-              <value>&lt;targetAudience displayLabel="CHO"&gt;%value%&lt;/targetAudience&gt;</value>
+              <value>version</value>
             </create>
             <read>
-              <path>mods:targetAudience[@displayLabel='CHO']</path>
-              <context>parent</context>
+              <path>/mods:mods/@version</path>
+              <context>document</context>
             </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
+            <update>NULL</update>
             <delete>NULL</delete>
           </actions>
         </properties>
         <children/>
       </element>
-      <element name="WWI">
+      <element name="schemaLocation">
         <properties>
-          <type>select</type>
+          <type>hidden</type>
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
-          <default_value>No</default_value>
+          <default_value>http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-5.xsd</default_value>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
-          <options>
-            <index key="">No</index>
-            <WWI>Yes</WWI>
-          </options>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Should this Appear in the World War I Channel?</title>
           <tree>TRUE</tree>
           <actions>
             <create>
-              <path>self::node()</path>
-              <context>parent</context>
+              <path>/mods:mods</path>
+              <context>document</context>
               <schema/>
-              <type>xml</type>
-              <prefix>NULL</prefix>
-              <value>&lt;targetAudience displayLabel="WWI"&gt;%value%&lt;/targetAudience&gt;</value>
+              <type>attribute</type>
+              <prefix>xsi</prefix>
+              <value>xsi:schemaLocation</value>
             </create>
             <read>
-              <path>mods:targetAudience[@displayLabel='WWI']</path>
-              <context>parent</context>
+              <path>/mods:mods/@xsi:schemaLocation</path>
+              <context>document</context>
             </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
+            <update>NULL</update>
             <delete>NULL</delete>
           </actions>
         </properties>
@@ -116,13 +117,7 @@
         <properties>
           <type>markup</type>
           <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
           <required>FALSE</required>
-          <resizable>FALSE</resizable>
           <tree>TRUE</tree>
           <actions>
             <create>
@@ -211,13 +206,7 @@
         <properties>
           <type>markup</type>
           <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
           <required>FALSE</required>
-          <resizable>FALSE</resizable>
           <title>Alternate Title</title>
           <tree>TRUE</tree>
           <actions>
@@ -276,20 +265,88 @@
           </element>
         </children>
       </element>
-      <element name="people">
+      <element name="editor">
         <properties>
-          <type>tabs</type>
+          <type>markup</type>
           <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
           <required>FALSE</required>
-          <title>People</title>
+          <resizable>FALSE</resizable>
           <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>self::node()</path>
+              <context>parent</context>
+              <schema/>
+              <type>xml</type>
+              <prefix>NULL</prefix>
+              <value>&lt;name type="personal"&gt;%value%&lt;/name&gt;</value>
+            </create>
+            <read>
+              <path>mods:name[@type='personal']</path>
+              <context>parent</context>
+            </read>
+            <update>NULL</update>
+            <delete>
+              <path>self::node()</path>
+              <context>self</context>
+            </delete>
+          </actions>
         </properties>
         <children>
-          <element name="0">
+          <element name="namePart">
             <properties>
-              <type>tabpanel</type>
+              <type>textfield</type>
               <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
               <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Editor</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>element</type>
+                  <prefix>NULL</prefix>
+                  <value>namePart</value>
+                </create>
+                <read>
+                  <path>mods:namePart</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+          <element name="role">
+            <properties>
+              <type>hidden</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <default_value>Editor</default_value>
+              <description>marcrelator</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Role</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -298,152 +355,20 @@
                   <schema/>
                   <type>xml</type>
                   <prefix>NULL</prefix>
-                  <value>&lt;name type='personal'&gt;&lt;/name&gt;</value>
+                  <value>&lt;role&gt;&lt;roleTerm authority="marcrelator" type="text"&gt;%value%&lt;/roleTerm&gt;&lt;/role&gt;</value>
                 </create>
                 <read>
-                  <path>mods:name[@type = 'personal']</path>
+                  <path>mods:role/mods:roleTerm[@authority="marcrelator" and @type="text"]</path>
                   <context>parent</context>
                 </read>
                 <update>
                   <path>self::node()</path>
                   <context>self</context>
                 </update>
-                <delete>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </delete>
+                <delete>NULL</delete>
               </actions>
             </properties>
-            <children>
-              <element name="namePart">
-                <properties>
-                  <type>textfield</type>
-                  <access>TRUE</access>
-                  <autocomplete_path>islandora_autocomplete/researcherCModel/mads.given/</autocomplete_path>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <title>Name</title>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>
-                      <path>self::node()</path>
-                      <context>parent</context>
-                      <schema/>
-                      <type>element</type>
-                      <prefix>NULL</prefix>
-                      <value>namepart</value>
-                    </create>
-                    <read>
-                      <path>mods:namePart</path>
-                      <context>parent</context>
-                    </read>
-                    <update>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </update>
-                    <delete>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </delete>
-                  </actions>
-                </properties>
-                <children/>
-              </element>
-              <element name="role">
-                <properties>
-                  <type>tags</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <title>Roles</title>
-                  <tree>TRUE</tree>
-                </properties>
-                <children>
-                  <element name="0">
-                    <properties>
-                      <type>tag</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <description>marcrelator</description>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Role</title>
-                      <tree>TRUE</tree>
-                      <actions>
-                        <create>
-                          <path>self::node()</path>
-                          <context>parent</context>
-                          <schema/>
-                          <type>xml</type>
-                          <prefix>NULL</prefix>
-                          <value>&lt;role&gt;&lt;roleTerm authority="marcrelator" type="text"&gt;%value%&lt;/roleTerm&gt;&lt;/role&gt;</value>
-                        </create>
-                        <read>
-                          <path>mods:role/mods:roleTerm[@authority="marcrelator" and @type="text"]</path>
-                          <context>parent</context>
-                        </read>
-                        <update>
-                          <path>self::node()</path>
-                          <context>self</context>
-                        </update>
-                        <delete>
-                          <path>self::node()/..</path>
-                          <context>self</context>
-                        </delete>
-                      </actions>
-                    </properties>
-                    <children/>
-                  </element>
-                </children>
-              </element>
-              <element name="people_desc">
-                <properties>
-                  <type>textarea</type>
-                  <access>TRUE</access>
-                  <description>This field holds information about the date the person served as the editor ... for example.</description>
-                  <required>FALSE</required>
-                  <title>Extra detail</title>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>
-                      <path>self::node()</path>
-                      <context>parent</context>
-                      <schema/>
-                      <type>element</type>
-                      <prefix>NULL</prefix>
-                      <value>description</value>
-                    </create>
-                    <read>
-                      <path>mods:description</path>
-                      <context>parent</context>
-                    </read>
-                    <update>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </update>
-                    <delete>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </delete>
-                  </actions>
-                </properties>
-                <children/>
-              </element>
-            </children>
+            <children/>
           </element>
         </children>
       </element>
@@ -505,13 +430,7 @@
         <properties>
           <type>textfield</type>
           <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
           <required>FALSE</required>
-          <resizable>FALSE</resizable>
           <title>ISSN</title>
           <tree>TRUE</tree>
           <actions>
@@ -547,7 +466,7 @@
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Handle (System Generated)</title>
+          <title>Handle</title>
           <tree>TRUE</tree>
           <actions>
             <create>
@@ -571,6 +490,35 @@
         </properties>
         <children/>
       </element>
+      <element name="lccn">
+        <properties>
+          <type>textfield</type>
+          <access>TRUE</access>
+          <required>FALSE</required>
+          <title>LCCN</title>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>self::node()</path>
+              <context>parent</context>
+              <schema/>
+              <type>xml</type>
+              <prefix>NULL</prefix>
+              <value>&lt;identifier type="lccn"&gt;%value%&lt;/identifier&gt;</value>
+            </create>
+            <read>
+              <path>mods:identifier[@type='lccn']</path>
+              <context>parent</context>
+            </read>
+            <update>
+              <path>self::node()</path>
+              <context>self</context>
+            </update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
       <element name="abstract">
         <properties>
           <type>textarea</type>
@@ -582,8 +530,8 @@
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <rows>12</rows>
-          <title>Abstract</title>
+          <rows>3</rows>
+          <title>Description</title>
           <tree>TRUE</tree>
           <actions>
             <create>
@@ -607,62 +555,17 @@
         </properties>
         <children/>
       </element>
-      <element name="ownership">
-        <properties>
-          <type>select</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <options>
-            <index key="American School for the Deaf">American School for the Deaf</index>
-            <index key="Avon Free Public Library">Avon Free Public Library</index>
-            <index key="Bridgeport Public Library, Bridgeport History Center">Bridgeport Public Library, Bridgeport History Center</index>
-            <index key="Case Memorial Library">Case Memorial Library</index>
-            <index key="Connecticut Historical Society">Connecticut Historical Society</index>
-            <index key="Connecticut Landmarks">Connecticut Landmarks</index>
-            <index key="Fairfield Museum and History Center">Fairfield Museum and History Center</index>
-            <index key="Groton Public Library">Groton Public Library</index>
-            <index key="Hartford History Center, Hartford Public Library">Hartford History Center, Hartford Public Library</index>
-            <index key="Hartford Medical Society Historical Library">Hartford Medical Society Historical Library</index>
-            <index key="Mystic Seaport">Mystic Seaport</index>
-            <index key="New Haven Museum and Historical Society">New Haven Museum and Historical Society</index>
-            <index key="Wesleyan University Library">Wesleyan University Library</index>
-            <index key="Windham Textile &amp; History Museum">Windham Textile &amp; History Museum</index>
-          </options>
-          <required>TRUE</required>
-          <resizable>FALSE</resizable>
-          <title>Held By</title>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>self::node()</path>
-              <context>parent</context>
-              <schema/>
-              <type>xml</type>
-              <prefix>NULL</prefix>
-              <value>&lt;note type="ownership"&gt;%value%&lt;/note&gt;</value>
-            </create>
-            <read>
-              <path>mods:note[@type='ownership']</path>
-              <context>parent</context>
-            </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children/>
-      </element>
       <element name="originInfo">
         <properties>
           <type>fieldset</type>
           <access>TRUE</access>
-          <required>FALSE</required>
+          <collapsed>FALSE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>TRUE</required>
+          <resizable>FALSE</resizable>
           <title>Origin Information</title>
           <tree>TRUE</tree>
           <actions>
@@ -755,39 +658,7 @@
               <multiple>FALSE</multiple>
               <required>TRUE</required>
               <resizable>FALSE</resizable>
-              <title>Date Issued</title>
-              <tree>TRUE</tree>
-              <actions>
-                <create>
-                  <path>self::node()</path>
-                  <context>parent</context>
-                  <schema/>
-                  <type>element</type>
-                  <prefix>NULL</prefix>
-                  <value>dateIssued</value>
-                </create>
-                <read>
-                  <path>mods:dateIssued[not(@*)]</path>
-                  <context>parent</context>
-                </read>
-                <update>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </update>
-                <delete>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </delete>
-              </actions>
-            </properties>
-            <children/>
-          </element>
-          <element name="dateIssued_start">
-            <properties>
-              <type>textfield</type>
-              <access>TRUE</access>
-              <required>FALSE</required>
-              <title>Publication Start Date</title>
+              <title>DateIssued</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -796,42 +667,10 @@
                   <schema/>
                   <type>xml</type>
                   <prefix>NULL</prefix>
-                  <value>&lt;dateIssued point="start"&gt;%value%&lt;/dateIssued&gt;</value>
+                  <value>&lt;dateIssued encoding="w3cdtf" keyDate="yes"&gt;%value%&lt;/dateIssued&gt;</value>
                 </create>
                 <read>
-                  <path>mods:dateIssued[@point='start']</path>
-                  <context>parent</context>
-                </read>
-                <update>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </update>
-                <delete>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </delete>
-              </actions>
-            </properties>
-            <children/>
-          </element>
-          <element name="dateIssued_end">
-            <properties>
-              <type>textfield</type>
-              <access>TRUE</access>
-              <required>FALSE</required>
-              <title>Publication End Date</title>
-              <tree>TRUE</tree>
-              <actions>
-                <create>
-                  <path>self::node()</path>
-                  <context>parent</context>
-                  <schema/>
-                  <type>xml</type>
-                  <prefix>NULL</prefix>
-                  <value>&lt;dateIssued point="end"&gt;%value%&lt;/dateIssued&gt;</value>
-                </create>
-                <read>
-                  <path>mods:dateIssued[@point='end']</path>
+                  <path>mods:dateIssued[@encoding='w3cdtf' and @keyDate='yes']</path>
                   <context>parent</context>
                 </read>
                 <update>
@@ -928,60 +767,17 @@
           </element>
         </children>
       </element>
-      <element name="rights">
-        <properties>
-          <type>select</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <options>
-            <index key="No known copyright restrictions.">Avon Free Public Library</index>
-            <index key="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, CC BY-NC.">Creative Commons BY-NC (Am. School for the Deaf, Hartford Medical Society HL)</index>
-            <index key="&#xA9;Bridgeport Public Library, Bridgeport History Center. All rights reserved. Images may be used for personal research or non-profit educational uses without prior permission. For requests to publish or exhibit, see Bridgeport History Center, Bridgeport Public Library.">Bridgeport Public Library</index>
-            <index key="This material is in the public domain.">Case Memorial Library</index>
-            <index key="Copyright and reproduction information available from the Connecticut Historical Society.">Connecticut Historical Society</index>
-            <index key="Copyright restrictions applying to use or reproduction of this image are available from Connecticut Landmarks.">Connecticut Landmarks</index>
-            <index key="All rights reserved by the Fairfield Museum and History Center. Please contact us for information about reproduction.">Fairfield Museum and History Center</index>
-            <index key="Digital image from the Groton Public Library local history collection. All right reserved. Image may be used for educational use only without prior permission. For requests or exhibit, contact the Groton Public Library.">Groton Public Library</index>
-            <index key="Copyright restrictions may apply to the use of this image. For more information or to obtain a photographic reproduction of this image, contact the Hartford History Center, Hartford Public Library.">Hartford History Center, Hartford Public Library</index>
-            <index key="Copyright restrictions applying to use or reproduction of this image are available from Mystic Seaport.">Mystic Seaport</index>
-            <index key="Reproduction and copyright information regarding this image is available from The New Haven Museum and Historical Society.">New Haven Museum and Historical Society</index>
-            <index key="All of the items digitized herein are from the collection of and, and are the property of, the Windham Textile and History Museum, 411 Main Street, Willimantic, CT, 06226. All of the digital images herein are also the property of the Windham Textile and History Museum. Permission is hereby granted to users of this site to download and copy any of the images found herein, provided that it is only for personal use and/or is for educational purposes under the &quot;fair use&quot; doctrine, and that the user includes a statement attributing the image as &quot;from the collection of the Windham Textile and History Museum, Willimantic, CT.&quot; None of the images may be used for commercial purposes without the prior permission of the Windham Textile and History Museum.">Windham Textile &amp; History Museum</index>
-          </options>
-          <required>TRUE</required>
-          <resizable>FALSE</resizable>
-          <title>Rights</title>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>self::node()</path>
-              <context>parent</context>
-              <schema/>
-              <type>xml</type>
-              <prefix>NULL</prefix>
-              <value>&lt;accessCondition type="use and reproduction"&gt;%value%&lt;/accessCondition&gt;</value>
-            </create>
-            <read>
-              <path>mods:accessCondition[@type='use and reproduction']</path>
-              <context>parent</context>
-            </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children/>
-      </element>
       <element name="subject">
         <properties>
           <type>fieldset</type>
           <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
           <required>FALSE</required>
+          <resizable>FALSE</resizable>
           <title>Subject</title>
           <tree>TRUE</tree>
         </properties>
@@ -1072,11 +868,110 @@
               </element>
             </children>
           </element>
+          <element name="temporal">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <required>FALSE</required>
+              <title>Dates</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <required>FALSE</required>
+                  <title>Topic</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;subject&gt;&lt;temporal&gt;%value%&lt;/temporal&gt;&lt;/subject&gt;</value>
+                    </create>
+                    <read>
+                      <path>mods:subject/mods:temporal</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="rights">
+        <properties>
+          <type>markup</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="useReproduction">
+            <properties>
+              <type>select</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <default_value>CC BY-NC</default_value>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <options>
+                <index key="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, CC BY-NC.">CC BY-NC</index>
+                <index key="This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License, CC BY-NC-ND.">CC BY-NC-ND</index>
+              </options>
+              <required>TRUE</required>
+              <resizable>FALSE</resizable>
+              <title>Rights</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>xml</type>
+                  <prefix>NULL</prefix>
+                  <value>&lt;accessCondition type="use and reproduction"&gt;%value%&lt;/accessCondition&gt;</value>
+                </create>
+                <read>
+                  <path>mods:accessCondition[@type="use and reproduction"]</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
         </children>
       </element>
       <element name="recordInfo">
         <properties>
-          <type>markup</type>
+          <type>hidden</type>
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
@@ -1091,89 +986,19 @@
               <path>self::node()</path>
               <context>parent</context>
               <schema/>
-              <type>element</type>
+              <type>xml</type>
               <prefix>NULL</prefix>
-              <value>recordInfo</value>
+              <value>&lt;recordInfo&gt;&lt;recordContentSource&gt;University of Connecticut Libraries&lt;/recordContentSource&gt;&lt;languageOfCataloging&gt;&lt;languageTerm type="code" authority="iso639-2b"&gt;eng&lt;/languageTerm&gt;&lt;/languageOfCataloging&gt;&lt;/recordInfo&gt;</value>
             </create>
             <read>
-              <path>mods:recordInfo</path>
+              <path>mods:recordInfo[mods:recordInfo/mods:recordContentSource = 'University of Connecticut Libraries' and mods:recordInfo/mods:languageOfCataloging/mods:languageTerm = 'eng']</path>
               <context>parent</context>
             </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
+            <update>NULL</update>
             <delete>NULL</delete>
           </actions>
         </properties>
-        <children>
-          <element name="recordContentSource">
-            <properties>
-              <type>textfield</type>
-              <access>TRUE</access>
-              <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
-              <disabled>FALSE</disabled>
-              <executes_submit_callback>FALSE</executes_submit_callback>
-              <multiple>FALSE</multiple>
-              <required>FALSE</required>
-              <resizable>FALSE</resizable>
-              <title>Who Created This MODS Record?</title>
-              <tree>TRUE</tree>
-              <actions>
-                <create>
-                  <path>self::node()</path>
-                  <context>parent</context>
-                  <schema/>
-                  <type>element</type>
-                  <prefix>NULL</prefix>
-                  <value>recordContentSource</value>
-                </create>
-                <read>
-                  <path>mods:recordContentSource</path>
-                  <context>parent</context>
-                </read>
-                <update>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </update>
-                <delete>NULL</delete>
-              </actions>
-            </properties>
-            <children/>
-          </element>
-          <element name="languageOfCataloging">
-            <properties>
-              <type>hidden</type>
-              <access>TRUE</access>
-              <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
-              <disabled>FALSE</disabled>
-              <executes_submit_callback>FALSE</executes_submit_callback>
-              <multiple>FALSE</multiple>
-              <required>FALSE</required>
-              <resizable>FALSE</resizable>
-              <tree>TRUE</tree>
-              <actions>
-                <create>
-                  <path>self::node()</path>
-                  <context>parent</context>
-                  <schema/>
-                  <type>xml</type>
-                  <prefix>NULL</prefix>
-                  <value>&lt;languageOfCataloging&gt;&lt;languageTerm type="code" authority="iso639-2b"&gt;%value%&lt;/languageTerm&gt;&lt;/languageOfCataloging&gt;</value>
-                </create>
-                <read>
-                  <path>mods:languageofCataloging/mods:languageTerm[@type='code' and @authority='iso639-2b']</path>
-                  <context>parent</context>
-                </read>
-                <update>NULL</update>
-                <delete>NULL</delete>
-              </actions>
-            </properties>
-            <children/>
-          </element>
-        </children>
+        <children/>
       </element>
     </children>
   </form>

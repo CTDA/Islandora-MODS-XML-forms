@@ -140,12 +140,12 @@
               <path>self::node()</path>
               <context>parent</context>
               <schema/>
-              <type>xml</type>
+              <type>element</type>
               <prefix>NULL</prefix>
-              <value>&lt;targetAudience displayLabel="CHO"&gt;%value%&lt;/targetAudience&gt;</value>
+              <value>targetAudience</value>
             </create>
             <read>
-              <path>mods:targetAudience[@displayLabel='CHO']</path>
+              <path>mods:targetAudience</path>
               <context>parent</context>
             </read>
             <update>
@@ -181,12 +181,12 @@
               <path>self::node()</path>
               <context>parent</context>
               <schema/>
-              <type>xml</type>
+              <type>element</type>
               <prefix>NULL</prefix>
-              <value>&lt;targetAudience displayLabel="WWI"&gt;%value%&lt;/targetAudience&gt;</value>
+              <value>targetAudience</value>
             </create>
             <read>
-              <path>mods:targetAudience[@displayLabel='WWI']</path>
+              <path>mods:targetAudience</path>
               <context>parent</context>
             </read>
             <update>
@@ -1289,7 +1289,6 @@
             <index key="Mystic Seaport">Mystic Seaport</index>
             <index key="New Haven Museum and Historical Society">New Haven Museum and Historical Society</index>
             <index key="Wesleyan University Library">Wesleyan University Library</index>
-            <index key="Windham Textile &amp; History Museum">Windham Textile &amp; History Museum</index>
           </options>
           <required>TRUE</required>
           <resizable>FALSE</resizable>
@@ -1818,7 +1817,6 @@
             <index key="Copyright restrictions may apply to the use of this image. For more information or to obtain a photographic reproduction of this image, contact the Hartford History Center, Hartford Public Library.">Hartford History Center, Hartford Public Library</index>
             <index key="Copyright restrictions applying to use or reproduction of this image are available from Mystic Seaport.">Mystic Seaport</index>
             <index key="Reproduction and copyright information regarding this image is available from The New Haven Museum and Historical Society.">New Haven Museum and Historical Society</index>
-            <index key="All of the items digitized herein are from the collection of and, and are the property of, the Windham Textile and History Museum, 411 Main Street, Willimantic, CT, 06226. All of the digital images herein are also the property of the Windham Textile and History Museum. Permission is hereby granted to users of this site to download and copy any of the images found herein, provided that it is only for personal use and/or is for educational purposes under the &quot;fair use&quot; doctrine, and that the user includes a statement attributing the image as &quot;from the collection of the Windham Textile and History Museum, Willimantic, CT.&quot; None of the images may be used for commercial purposes without the prior permission of the Windham Textile and History Museum.">Windham Textile &amp; History Museum</index>
           </options>
           <required>FALSE</required>
           <resizable>FALSE</resizable>

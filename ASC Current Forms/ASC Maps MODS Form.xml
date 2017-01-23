@@ -112,46 +112,6 @@
         </properties>
         <children/>
       </element>
-      <element name="geo">
-        <properties>
-          <type>select</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <default_value>Yes</default_value>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <options>
-            <GEO>Yes</GEO>
-            <index key="">No</index>
-          </options>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <title>Should this item be a part of the GEO channel?</title>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>self::node()</path>
-              <context>parent</context>
-              <schema/>
-              <type>element</type>
-              <prefix>NULL</prefix>
-              <value>targetAudience</value>
-            </create>
-            <read>
-              <path>mods:targetAudience</path>
-              <context>parent</context>
-            </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children/>
-      </element>
       <element name="cho">
         <properties>
           <type>select</type>
@@ -175,12 +135,12 @@
               <path>self::node()</path>
               <context>parent</context>
               <schema/>
-              <type>element</type>
+              <type>xml</type>
               <prefix>NULL</prefix>
-              <value>targetAudience</value>
+              <value>&lt;targetAudience displayLabel="CHO"&gt;%value%&lt;/targetAudience&gt;</value>
             </create>
             <read>
-              <path>mods:targetAudience</path>
+              <path>mods:targetAudience[@displayLabel='CHO']</path>
               <context>parent</context>
             </read>
             <update>

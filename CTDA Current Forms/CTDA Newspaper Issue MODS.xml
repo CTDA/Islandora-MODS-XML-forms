@@ -72,46 +72,6 @@
         </properties>
         <children/>
       </element>
-      <element name="WWI">
-        <properties>
-          <type>select</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <default_value>No</default_value>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <options>
-            <index key="">No</index>
-            <WWI>Yes</WWI>
-          </options>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <title>Should this Appear in the World War I Channel?</title>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>self::node()</path>
-              <context>parent</context>
-              <schema/>
-              <type>xml</type>
-              <prefix>NULL</prefix>
-              <value>&lt;targetAudience displayLabel="WWI"&gt;%value%&lt;/targetAudience&gt;</value>
-            </create>
-            <read>
-              <path>mods:targetAudience[@displayLabel='WWI']</path>
-              <context>parent</context>
-            </read>
-            <update>
-              <path>self::node()</path>
-              <context>self</context>
-            </update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children/>
-      </element>
       <element name="titleInfo">
         <properties>
           <type>markup</type>
@@ -619,6 +579,7 @@
           <options>
             <index key="American School for the Deaf">American School for the Deaf</index>
             <index key="Avon Free Public Library">Avon Free Public Library</index>
+            <index key="The Bill Memorial Library, Groton, CT">Bill Memorial Library, Groton, CT</index>
             <index key="Bridgeport Public Library, Bridgeport History Center">Bridgeport Public Library, Bridgeport History Center</index>
             <index key="Case Memorial Library">Case Memorial Library</index>
             <index key="Connecticut Historical Society">Connecticut Historical Society</index>
@@ -939,7 +900,7 @@
           <multiple>FALSE</multiple>
           <options>
             <index key="No known copyright restrictions.">Avon Free Public Library</index>
-            <index key="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, CC BY-NC.">Creative Commons BY-NC (Am. School for the Deaf, Hartford Medical Society HL)</index>
+            <index key="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, CC BY-NC.">Creative Commons BY-NC</index>
             <index key="&#xA9;Bridgeport Public Library, Bridgeport History Center. All rights reserved. Images may be used for personal research or non-profit educational uses without prior permission. For requests to publish or exhibit, see Bridgeport History Center, Bridgeport Public Library.">Bridgeport Public Library</index>
             <index key="This material is in the public domain.">Case Memorial Library</index>
             <index key="Copyright and reproduction information available from the Connecticut Historical Society.">Connecticut Historical Society</index>

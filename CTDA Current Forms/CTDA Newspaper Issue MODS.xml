@@ -296,7 +296,7 @@
                       <schema/>
                       <type>element</type>
                       <prefix>NULL</prefix>
-                      <value>namepart</value>
+                      <value>namePart</value>
                     </create>
                     <read>
                       <path>mods:namePart</path>

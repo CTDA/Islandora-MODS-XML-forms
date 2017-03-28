@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3">
   <properties>
-    <root_name>mods</root_name>
+    <root_name>mods:mods</root_name>
     <schema_uri>http://www.loc.gov/standards/mods/v3/mods-3-5.xsd</schema_uri>
     <namespaces default="http://www.loc.gov/mods/v3">
       <namespace prefix="mods">http://www.loc.gov/mods/v3</namespace>

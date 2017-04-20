@@ -682,6 +682,7 @@
           <options>
             <index key="American School for the Deaf">American School for the Deaf</index>
             <index key="Avon Free Public Library">Avon Free Public Library</index>
+            <index key="The Barnum Museum">Barnum Museum</index>
             <index key="The Bill Memorial Library, Groton, CT">Bill Memorial Library, Groton, CT</index>
             <index key="Bridgeport Public Library, Bridgeport History Center">Bridgeport Public Library, Bridgeport History Center</index>
             <index key="Case Memorial Library, Orange (Conn.)">Case Memorial Library</index>
@@ -1200,14 +1201,15 @@
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
-          <description>Select Your Institution. The Default is: No known copyright restrictions.</description>
+          <description>Select Your Institution. </description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <options>
-            <index key="No known copyright restrictions.">Avon Free Public Library</index>
             <index key="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, CC BY-NC.">Creative Commons BY-NC</index>
-            <index key="&#xA9;Bridgeport Public Library, Bridgeport History Center. All rights reserved. Images may be used for personal research or non-profit educational uses without prior permission. For requests to publish or exhibit, see Bridgeport History Center, Bridgeport Public Library.">Bridgeport Public Library</index>
+            <index key="No known copyright restrictions.">Avon Free Public Library</index>
+            <index key="This item is protected by copyright and/or related rights.  Images and data from The Barnum Museum are intended for public access and educational use only.  This material is owned, held, or licensed by The Barnum Museum and is being provided solely for the purpose of teaching or individual research.  All other use, including commercial reuse, mounting on other systems, or other forms of redistribution requires permission of the appropriate department of The Barnum Museum; fees may be applicable.">Barnum Museum</index>
+            <index key="This item is protected by copyright and/or related rights.  Images and data from The Bridgeport History Center, Bridgeport Public Library are intended for public access and educational use only.  This material is owned, held, or licensed by The Bridgeport History Center, Bridgeport Public Library and is being provided solely for the purpose of teaching or individual research.  All other use, including commercial reuse, mounting on other systems, or other forms of redistribution requires permission of the appropriate department of The Bridgeport History Center, Bridgeport Public Library; fees may be applicable.">Bridgeport Public Library, BHC</index>
             <index key="This material is in the public domain.">Case Memorial Library</index>
             <index key="Copyright and reproduction information available from the Connecticut Historical Society.">Connecticut Historical Society (Short Version)</index>
             <index key="Reproduction and copyright information regarding this image is available from The Graphics Collection, The Connecticut Historical Society, Hartford">Connecticut Historical Society (Long Version)</index>

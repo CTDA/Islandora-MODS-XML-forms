@@ -41,7 +41,7 @@
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
-          <description>This form is used to enter "metadata" or descriptive information about your Collection. For help on how to enter information, consult the how-to document on the CTDA web site &lt;a href="http://ctdigitalarchive.org/resources-for-participants/" target="_blank"&gt;Resources for Participants&lt;/a&gt;.</description>
+          <description>This form is used to enter "metadata" or descriptive information about your Collection. Not all fields may be appropriate. Fields with no red asterix can be left empty.</description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
@@ -140,12 +140,12 @@
               <path>self::node()</path>
               <context>parent</context>
               <schema/>
-              <type>element</type>
+              <type>xml</type>
               <prefix>NULL</prefix>
-              <value>targetAudience</value>
+              <value>&lt;targetAudience displayLabel="CHO"&gt;%value%&lt;/targetAudience&gt;</value>
             </create>
             <read>
-              <path>mods:targetAudience</path>
+              <path>mods:targetAudience[@displayLabel='CHO']</path>
               <context>parent</context>
             </read>
             <update>
@@ -1235,13 +1235,22 @@
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <options>
+            <index key="American School for the Deaf">American School for the Deaf</index>
             <index key="Avon Free Public Library">Avon Free Public Library</index>
+            <index key="The Barnum Museum">Barnum Museum</index>
+            <index key="The Bill Memorial Library, Groton, CT">Bill Memorial Library, Groton, CT</index>
             <index key="Bridgeport History Center, Bridgeport Public Library">Bridgeport History Center, Bridgeport Public Library</index>
+            <index key="Case Memorial Library, Orange (Conn.)">Case Memorial Library</index>
             <index key="Connecticut Historical Society">Connecticut Historical Society</index>
+            <index key="Connecticut Landmarks">Connecticut Landmarks</index>
             <index key="Fairfield Museum and History Center">Fairfield Museum and History Center</index>
+            <index key="Groton Public Library">Groton Public Library</index>
             <index key="Hartford History Center, Hartford Public Library">Hartford History Center, Hartford Public Library</index>
+            <index key="Hartford Medical Society Historical Library">Hartford Medical Society Historical Library</index>
             <index key="Mystic Seaport">Mystic Seaport</index>
+            <index key="New Haven Museum and Historical Society">New Haven Museum and Historical Society</index>
             <index key="Wesleyan University Library">Wesleyan University Library</index>
+            <index key="Windham Textile &amp; History Museum">Windham Textile &amp; History Museum</index>
           </options>
           <required>TRUE</required>
           <resizable>FALSE</resizable>
@@ -1752,21 +1761,27 @@
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
-          <description>Select Your Institution. Default is: No known copyright restrictions.</description>
+          <description>Select Your Institution.</description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <options>
-            <index key="%value%">SELECT YOUR RIGHTS STATEMENT FROM THE DROP DOWN LIST</index>
-            <index key="No known copyright restrictions.">Default</index>
-            <index key="&#xA9;Bridgeport Public Library, Bridgeport History Center. All rights reserved. Images may be used for personal research or non-profit educational uses without prior permission. For requests to publish or exhibit, see Bridgeport History Center, Bridgeport Public Library.">Bridgeport Public Library, BHC</index>
-            <index key="Copyright restrictions may apply to the use of this image. For more information or to obtain a photographic reproduction of this image, contact the Hartford History Center, Hartford Public Library.">Hartford History Center, Hartford Public Library</index>
+            <index key="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License, CC BY-NC.">Creative Commons BY-NC</index>
+            <index key="No known copyright restrictions.">Avon Free Public Library</index>
+            <index key="This item is protected by copyright and/or related rights.  Images and data from The Barnum Museum are intended for public access and educational use only.  This material is owned, held, or licensed by The Barnum Museum and is being provided solely for the purpose of teaching or individual research.  All other use, including commercial reuse, mounting on other systems, or other forms of redistribution requires permission of the appropriate department of The Barnum Museum; fees may be applicable.">Barnum Museum</index>
+            <index key="This item is protected by copyright and/or related rights.  Images and data from The Bridgeport History Center, Bridgeport Public Library are intended for public access and educational use only.  This material is owned, held, or licensed by The Bridgeport History Center, Bridgeport Public Library and is being provided solely for the purpose of teaching or individual research.  All other use, including commercial reuse, mounting on other systems, or other forms of redistribution requires permission of the appropriate department of The Bridgeport History Center, Bridgeport Public Library; fees may be applicable.">Bridgeport Public Library, BHC</index>
+            <index key="This material is in the public domain.">Case Memorial Library</index>
             <index key="Copyright and reproduction information available from the Connecticut Historical Society">Connecticut Historical Society (Short Version)</index>
             <index key="Reproduction and copyright information regarding this image is available from The Graphics Collection, The Connecticut Historical Society, Hartford.">Connecticut Historical Society (Long Version)</index>
+            <index key="Copyright restrictions applying to use or reproduction of this image are available from Connecticut Landmarks.">Connecticut Landmarks</index>
             <index key="All rights reserved by the Fairfield Museum and History Center. Please contact us for information about reproduction.">Fairfield Museum and History Center</index>
+            <index key="Digital image from the Groton Public Library local history collection. All right reserved. Image may be used for educational use only without prior permission. For requests or exhibit, contact the Groton Public Library.">Groton Public Library</index>
+            <index key="Copyright restrictions may apply to the use of this image. For more information or to obtain a photographic reproduction of this image, contact the Hartford History Center, Hartford Public Library.">Hartford History Center, Hartford Public Library</index>
             <index key="Copyright restrictions applying to use or reproduction of this image are available from Mystic Seaport.">Mystic Seaport</index>
+            <index key="Reproduction and copyright information regarding this image is available from The New Haven Museum and Historical Society.">New Haven Museum and Historical Society</index>
+            <index key="All of the items digitized herein are from the collection of and, and are the property of, the Windham Textile and History Museum, 411 Main Street, Willimantic, CT, 06226. All of the digital images herein are also the property of the Windham Textile and History Museum. Permission is hereby granted to users of this site to download and copy any of the images found herein, provided that it is only for personal use and/or is for educational purposes under the &quot;fair use&quot; doctrine, and that the user includes a statement attributing the image as &quot;from the collection of the Windham Textile and History Museum, Willimantic, CT.&quot; None of the images may be used for commercial purposes without the prior permission of the Windham Textile and History Museum.">Windham Textile &amp; History Museum</index>
           </options>
-          <required>FALSE</required>
+          <required>TRUE</required>
           <resizable>FALSE</resizable>
           <rows>1</rows>
           <title>Rights</title>
